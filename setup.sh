@@ -1,5 +1,5 @@
 apt update -y && apt upgrade -y && apt full-upgrade -y && apt dist-upgrade -y && apt autoclean -y && apt clean -y && apt autoremove -y
-apt install -y rsync openssh-client proftpd apache2 squid putty arpspoof openssl
+apt install -y rsync openssh-client proftpd proftpd-basic apache2 squid putty dsniff openssl
 
 systemctl start proftpd
 systemctl enable proftpd
@@ -8,7 +8,6 @@ openssl req -x509 -newkey rsa:1024 -keyout /etc/ssl/private/proftpd.key -out /et
 chmod 600 /etc/ssl/private/proftpd.key
 chmod 600 /etc/ssl/certs/proftpd.crt
 
-adduser ftpuser
 groupadd -f ftpuser
 useradd -d /home/ftpuser -g ftpuser -p $(openssl passwd -1 toto) ftpuser
 
