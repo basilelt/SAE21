@@ -1,5 +1,5 @@
 apt update -y && apt upgrade -y && apt full-upgrade -y && apt dist-upgrade -y && apt autoclean -y && apt clean -y && apt autoremove -y
-apt install -y rsync openssh-client proftpd apache2 squid putty arpspoo openssl
+apt install -y rsync openssh-client proftpd apache2 squid putty arpspoof openssl
 
 systemctl start proftpd
 systemctl enable proftpd
