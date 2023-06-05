@@ -1,3 +1,43 @@
+apt remove network-manager -y
+systemctl enable systemd-networkd
+systemctl daemon-reload
+
+cat > /etc/systemd/network <<EOF
+[Match]
+Name=e*
+
+[Network]
+Address=172.16.155.253/22
+Gateway=172.16.155.254
+DNS=8.8.8.8 1.1.1.1
+EOF
+
+systemctl restart systemd-networkd
+dhclient -r
+
+rm /etc/apt/sources.list
+cat > /etc/apt/sources.list <<EOF
+# bullseye
+deb http://deb.debian.org/debian/ bullseye main contrib non-free
+deb-src http://deb.debian.org/debian/ bullseye main non-free contrib
+
+# bullseye-updates, previously known as 'volatile
+deb http://deb.debian.org/debian/ bullseye-updates main contrib non-free
+deb-src http://deb.debian.org/debian/ bullseye-updates main contrib non-free
+
+# bullseye-backports, previously on backports, debian.org
+deb http://deb.debian.org/debian/ bullseye-backports main contrib non-free
+deb-src http://deb.debian.org/debian/ bullseye-backports main contrib non-free
+
+# bullseye-proposed-updates
+deb http://deb.debian.org/debian/ bullseye-proposed-updates main contrib non-free
+deb-src http://deb.debian.org/debian/ bullseye-proposed-updates main contrib non-free
+
+# debian security
+deb http://deb.debian.org/debian-security/ bullseye-security main contrib non-free
+deb-src http:deb.debian.org/debian-security/ bullseye-security main contrib non-free
+EOF
+
 apt update -y && apt upgrade -y && apt full-upgrade -y && apt dist-upgrade -y && apt autoclean -y && apt clean -y && apt autoremove -y
 apt install -y rsync openssh-client proftpd proftpd-basic apache2 squid putty dsniff openssl
 
@@ -89,3 +129,5 @@ ftpasswd --passwd --file=/etc/proftpd/ftpd.passwd --name=cathy --uid=61 --gid=61
 ftpasswd --passwd --file=/etc/proftpd/ftpd.passwd --name=cathy --change-password toto
 
 systemctl restart proftpd
+
+sh /usr/share/doc/apache2/examples/setup-instance test
