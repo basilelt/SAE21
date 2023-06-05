@@ -1,4 +1,4 @@
-## penser à changer ip dans netword et dans squidguard lorsqu'en prod
+## penser à changer ip dans netword et dans squidguard lorsqu'en prod et retirer open-vm-tools
 
 apt remove network-manager -y
 systemctl enable systemd-networkd
@@ -42,6 +42,7 @@ EOF
 
 apt update -y && apt upgrade -y && apt full-upgrade -y && apt dist-upgrade -y && apt autoclean -y && apt clean -y && apt autoremove -y
 apt install -y rsync openssh-client proftpd proftpd-basic apache2 squid putty dsniff openssl squidguard
+apt install -y open-vm-tools
 
 rm /etc/systemd/network
 cat > /etc/systemd/network <<EOF
