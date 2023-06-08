@@ -144,10 +144,10 @@ cat > /etc/proftpd/tls.conf <<EOF
 
 TLSEngine on
 TLSLog /var/log/proftpd/tls.log
-TLSProtocol SSLv23
-TLSOptions NoCertRequest EnableDiags NoSessionReuseRequired
+TLSProtocol SSLv3
 TLSRSACertificateFile /etc/ssl/certs/proftpd.crt
 TLSRSACertificateKeyFile /etc/ssl/private/proftpd.key
+TLSRequired on
 EOF
 
 echo '/bin/false' >> /etc/shells
