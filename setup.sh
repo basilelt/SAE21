@@ -142,6 +142,8 @@ TLSOptions NoCertRequest EnableDiags NoSessionReuseRequired
 TLSVerifyClient off
 EOF
 
+echo '/bin/false' >> /etc/shells
+
 sudo -u ftpuser mkdir /home/ftpuser/antoine && mkdir /home/ftpuser/cathy
 ftpasswd --passwd --file=/etc/proftpd/ftpd.passwd --name=antoine --uid=61 --gid=60 --home=/home/ftpuser/antoine/ --shell=/bin/false
 ftpasswd --passwd --file=/etc/proftpd/ftpd.passwd --name=antoine --change-password toto
