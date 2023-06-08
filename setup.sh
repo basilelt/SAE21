@@ -118,7 +118,7 @@ AllowOverwrite on
   Group ftpuser
  
   # Possibilité de se connecter avec l'utilisateurs "anonymous".
-  UserAlias anonymous
+  UserAlias anonymous ftpuser
  
   # Limiter le nombre de connexions anonymes
   MaxClients 10
@@ -133,14 +133,21 @@ Include /etc/proftpd/tls.conf
 EOF
 
 cat > /etc/proftpd/tls.conf <<EOF
-TLSRSACertificateFile /etc/ssl/certs/proftpd.crt
-TLSRSACertificateKeyFile /etc/ssl/private/proftpd.key
+#TLSRSACertificateFile /etc/ssl/certs/proftpd.crt
+#TLSRSACertificateKeyFile /etc/ssl/private/proftpd.key
+#TLSEngine on
+#TLSLog /var/log/proftpd/tls.log
+#TLSProtocol SSLv23
+#TLSRequired on
+#TLSOptions NoCertRequest EnableDiags NoSessionReuseRequired
+#TLSVerifyClient off
+
 TLSEngine on
 TLSLog /var/log/proftpd/tls.log
 TLSProtocol SSLv23
-TLSRequired on
 TLSOptions NoCertRequest EnableDiags NoSessionReuseRequired
-TLSVerifyClient off
+TLSRSACertificateFile /etc/ssl/certs/proftpd.crt
+TLSRSACertificateKeyFile /etc/ssl/private/proftpd.key
 EOF
 
 echo '/bin/false' >> /etc/shells
