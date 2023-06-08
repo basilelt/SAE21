@@ -4,6 +4,7 @@ apt remove network-manager -y
 systemctl enable systemd-networkd
 systemctl daemon-reload
 
+rm /etc/systemd/network/eth.network
 cat > /etc/systemd/network/eth.network <<EOF
 [Match]
 Name=e*
