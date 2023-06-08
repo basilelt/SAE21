@@ -61,7 +61,7 @@ dhclient -r
 systemctl start proftpd
 systemctl enable proftpd
 
-openssl req -x509 -newkey rsa:1024 -keyout /etc/ssl/private/proftpd.key -out /etc/ssl/certs/proftpd.crt -nodes -days 365
+openssl req -x509 -newkey rsa:1024 -keyout /etc/ssl/private/proftpd.key -out /etc/ssl/certs/proftpd.crt -nodes -days 365 -subj "/C=FR/ST=Haut-Rhin/L=Colmar/O=UHA/OU=RT/CN=g2.rt"
 chmod 600 /etc/ssl/private/proftpd.key
 chmod 600 /etc/ssl/certs/proftpd.crt
 
