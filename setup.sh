@@ -16,6 +16,7 @@ DHCP=yes
 [DHCP]
 UseDNS=true
 EOF
+cp /etc/systemd/network/eth.network /etc/systemd/network/eth.network.save
 systemctl restart systemd-networkd
 dhclient -r
 
@@ -101,7 +102,6 @@ Group ftpuser
 # Racine du FTP ( [b]~[/b] correspond au fait que l'utilisateur est cloisonné dans son dossier personnel)
 DefaultRoot ~
 AuthUserFile /etc/proftpd/ftpd.passwd
-AuthGroupFile /etc/proftpd/ftpd.group
 AuthOrder mod_auth_file.c
 
 # Generally files are overwritable.
