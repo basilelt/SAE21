@@ -64,8 +64,10 @@ openssl req -x509 -newkey rsa:1024 -keyout /etc/ssl/private/proftpd.key -out /et
 chmod 600 /etc/ssl/private/proftpd.key
 chmod 600 /etc/ssl/certs/proftpd.crt
 
+mkdir /home/ftpuser
 groupadd -f ftpuser
 useradd -d /home/ftpuser -g ftpuser -p $(openssl passwd -1 toto) ftpuser
+chown -R /home/ftpuser ftpuser:ftpuser
 
 rm /etc/proftpd/proftpd.conf
 cat > /etc/proftpd/proftpd.conf <<EOF
