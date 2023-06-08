@@ -43,7 +43,7 @@ deb-src http:deb.debian.org/debian-security/ bullseye-security main contrib non-
 EOF
 
 apt update -y && apt upgrade -y && apt full-upgrade -y && apt dist-upgrade -y && apt autoclean -y && apt clean -y && apt autoremove -y
-apt install -y rsync openssh-client proftpd proftpd-basic apache2 squid putty dsniff openssl squidguard sshd
+apt install -y rsync openssh-client proftpd proftpd-basic apache2 squid putty dsniff openssl squidguard
 apt install -y open-vm-tools
 
 rm /etc/systemd/network/eth.network
