@@ -46,7 +46,7 @@ apt install -y rsync openssh-client proftpd proftpd-basic apache2 squid putty ds
 apt install -y open-vm-tools
 
 rm /etc/systemd/network/eth.network
-cat > /etc/systemd/network/eth.conf <<EOF
+cat > /etc/systemd/network/eth.network <<EOF
 [Match]
 Name=e*
 
@@ -68,7 +68,7 @@ chmod 600 /etc/ssl/certs/proftpd.crt
 mkdir /home/ftpuser
 groupadd -f ftpuser
 useradd -d /home/ftpuser -g ftpuser -p $(openssl passwd -1 toto) ftpuser
-chown -R /home/ftpuser ftpuser:ftpuser
+chown -R ftpuser:ftpuser /home/ftpuser
 
 rm /etc/proftpd/proftpd.conf
 cat > /etc/proftpd/proftpd.conf <<EOF
