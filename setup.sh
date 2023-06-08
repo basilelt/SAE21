@@ -50,7 +50,7 @@ cat > /etc/systemd/network/eth.conf <<EOF
 Name=e*
 
 [Network]
-Address=172.16.155.253/22
+Address=172.16.155.252/22
 Gateway=172.16.155.254
 DNS=8.8.8.8 1.1.1.1
 EOF
