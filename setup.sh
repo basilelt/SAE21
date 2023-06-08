@@ -1,4 +1,5 @@
 ## penser à changer ip dans netword et dans squidguard lorsqu'en prod et retirer open-vm-tools
+## si machine physique changer networkd pour chaques interfaces
 
 apt remove network-manager -y
 systemctl enable systemd-networkd
