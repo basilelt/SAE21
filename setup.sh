@@ -4,7 +4,7 @@ apt remove network-manager -y
 systemctl enable systemd-networkd
 systemctl daemon-reload
 
-cat > /etc/systemd/network <<EOF
+cat > /etc/systemd/network/eth.network <<EOF
 [Match]
 Name=e*
 
@@ -44,8 +44,8 @@ apt update -y && apt upgrade -y && apt full-upgrade -y && apt dist-upgrade -y &&
 apt install -y rsync openssh-client proftpd proftpd-basic apache2 squid putty dsniff openssl squidguard
 apt install -y open-vm-tools
 
-rm /etc/systemd/network
-cat > /etc/systemd/network <<EOF
+rm /etc/systemd/network/eth.network
+cat > /etc/systemd/network/eth.conf <<EOF
 [Match]
 Name=e*
 
@@ -139,6 +139,7 @@ TLSOptions NoCertRequest EnableDiags NoSessionReuseRequired
 TLSVerifyClient off
 EOF
 
+sudo -u ftpuser mkdir /home/ftpuser/antoine && mkdir /home/ftpuser/cathy
 ftpasswd --passwd --file=/etc/proftpd/ftpd.passwd --name=antoine --uid=61 --gid=60 --home=/home/ftpuser/antoine/ --shell=/bin/false
 ftpasswd --passwd --file=/etc/proftpd/ftpd.passwd --name=antoine --change-password toto
 
