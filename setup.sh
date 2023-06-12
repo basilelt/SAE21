@@ -152,7 +152,7 @@ EOF
 
 echo '/bin/false' >> /etc/shells
 
-sudo -u ftpuser mkdir /home/ftpuser/antoine && mkdir /home/ftpuser/cathy
+sudo -u ftpuser mkdir /home/ftpuser/antoine && sudo -u ftpuser mkdir /home/ftpuser/cathy
 echo -n "toto" | ftpasswd --stdin --passwd --file=/etc/proftpd/ftpd.passwd --name=antoine --uid=61 --gid=60 --home=/home/ftpuser/antoine/ --shell=/bin/false
 
 echo -n "toto" | ftpasswd --stdin --passwd --file=/etc/proftpd/ftpd.passwd --name=cathy --uid=61 --gid=61 --home=/home/ftpuser/cathy/ --shell=/bin/false
