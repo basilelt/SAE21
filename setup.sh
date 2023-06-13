@@ -19,29 +19,6 @@ cp /etc/systemd/network/admin.network /etc/systemd/network/admin.network.save
 systemctl restart systemd-networkd
 dhclient -r
 
-rm /etc/apt/sources.list
-cat > /etc/apt/sources.list <<EOF
-# bullseye
-deb http://deb.debian.org/debian/ bullseye main contrib non-free
-deb-src http://deb.debian.org/debian/ bullseye main non-free contrib
-
-# bullseye-updates, previously known as 'volatile
-deb http://deb.debian.org/debian/ bullseye-updates main contrib non-free
-deb-src http://deb.debian.org/debian/ bullseye-updates main contrib non-free
-
-# bullseye-backports, previously on backports, debian.org
-deb http://deb.debian.org/debian/ bullseye-backports main contrib non-free
-deb-src http://deb.debian.org/debian/ bullseye-backports main contrib non-free
-
-# bullseye-proposed-updates
-deb http://deb.debian.org/debian/ bullseye-proposed-updates main contrib non-free
-deb-src http://deb.debian.org/debian/ bullseye-proposed-updates main contrib non-free
-
-# debian security
-deb http://deb.debian.org/debian-security/ bullseye-security main contrib non-free
-deb-src http:deb.debian.org/debian-security/ bullseye-security main contrib non-free
-EOF
-
 apt update -y && apt upgrade -y && apt full-upgrade -y && apt dist-upgrade -y && apt autoclean -y && apt clean -y && apt autoremove -y
 apt install -y rsync openssh-client proftpd proftpd-basic apache2 squid putty dsniff openssl squidguard install proftpd-mod-crypto
 apt install -y open-vm-tools-desktop open-vm-tools
