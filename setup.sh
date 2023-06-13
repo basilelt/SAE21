@@ -18,7 +18,7 @@ cp /etc/systemd/network/admin.network /etc/systemd/network/admin.network.save
 systemctl restart systemd-networkd
 
 apt update -y && apt upgrade -y && apt full-upgrade -y && apt dist-upgrade -y && apt autoclean -y && apt clean -y && apt autoremove -y
-apt install -y rsync openssh-client proftpd proftpd-basic apache2 squid putty dsniff openssl squidguard proftpd-mod-crypto
+apt install -y rsync openssh-client proftpd proftpd-basic apache2 squid putty dsniff openssl squidguard proftpd-mod-crypto filezilla wireshark
 apt install -y open-vm-tools-desktop open-vm-tools
 
 rm /etc/systemd/network/admin.network
@@ -220,7 +220,7 @@ RequireValidShell off
 AuthPAM off
 AuthPAMConfig ftp
 
-Listen 172.16.151.252
+DefaultAddress 172.16.151.252
 
 # Port d'écoute (21 par défaut)
 Port 21
