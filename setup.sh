@@ -219,7 +219,9 @@ RequireValidShell off
 # Activer l'authentification PAM
 AuthPAM off
 AuthPAMConfig ftp
- 
+
+Listen 172.16.151.252
+
 # Port d'écoute (21 par défaut)
 Port 21
  
@@ -443,7 +445,6 @@ url_rewrite_access deny all # This line specifies that URL rewriting is denied f
 redirector_bypass on
 EOF
 
-rm /etc/squidguard/squidGuard.conf
 cat > /etc/squidguard/squidGuard.conf <<EOF
 # SquidGuard configuration file
 
