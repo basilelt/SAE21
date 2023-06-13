@@ -3,7 +3,6 @@
 
 apt remove network-manager -y
 systemctl enable systemd-networkd
-systemctl daemon-reload
 
 cat > /etc/systemd/network/admin.network <<EOF
 [Match]
@@ -17,7 +16,6 @@ UseDNS=true
 EOF
 cp /etc/systemd/network/admin.network /etc/systemd/network/admin.network.save
 systemctl restart systemd-networkd
-dhclient -r
 
 apt update -y && apt upgrade -y && apt full-upgrade -y && apt dist-upgrade -y && apt autoclean -y && apt clean -y && apt autoremove -y
 apt install -y rsync openssh-client proftpd proftpd-basic apache2 squid putty dsniff openssl squidguard install proftpd-mod-crypto
