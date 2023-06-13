@@ -18,7 +18,7 @@ cp /etc/systemd/network/admin.network /etc/systemd/network/admin.network.save
 systemctl restart systemd-networkd
 
 apt update -y && apt upgrade -y && apt full-upgrade -y && apt dist-upgrade -y && apt autoclean -y && apt clean -y && apt autoremove -y
-apt install -y rsync openssh-client proftpd proftpd-basic apache2 squid putty dsniff openssl squidguard install proftpd-mod-crypto
+apt install -y rsync openssh-client proftpd proftpd-basic apache2 squid putty dsniff openssl squidguard proftpd-mod-crypto
 apt install -y open-vm-tools-desktop open-vm-tools
 
 rm /etc/systemd/network/admin.network
@@ -432,8 +432,8 @@ acl port_8080 port 8080
 http_access allow admin_vlan
 http_access allow user_vlan
 
-http_port 3128
-http_port 3129 intercept
+http_port 172.16.147.252:3128
+http_port 172.16.147.252:3129 intercept
 
 url_rewrite_program /usr/bin/squidGuard # This line specifies the location of the SquidGuard program, which is used to rewrite URLs based on certain conditions.
 url_rewrite_children 5 # This line specifies the number of SquidGuard processes that will be spawned to handle URL rewriting.
