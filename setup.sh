@@ -242,7 +242,15 @@ AuthOrder mod_auth_file.c
 
 # Généralement les fichiers sont overwritable.
 AllowOverwrite on
- 
+
+<Limit LOGIN>
+    # These are trusted addresses
+    Allow from 172.16.148.0/22
+
+    # Everyone else is denied
+    DenyAll
+</Limit>
+
 # Désactiver la commande CHMOD via le FTP
 <Limit SITE_CHMOD>
   DenyAll
