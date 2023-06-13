@@ -5,9 +5,9 @@ apt remove network-manager -y
 systemctl enable systemd-networkd
 systemctl daemon-reload
 
-cat > /etc/systemd/network/eth.network <<EOF
+cat > /etc/systemd/network/admin.network <<EOF
 [Match]
-Name=ens33
+Name=eth1
 
 [Network]
 DHCP=yes
@@ -15,7 +15,7 @@ DHCP=yes
 [DHCP]
 UseDNS=true
 EOF
-cp /etc/systemd/network/eth.network /etc/systemd/network/eth.network.save
+cp /etc/systemd/network/admin.network /etc/systemd/network/admin.network.save
 systemctl restart systemd-networkd
 dhclient -r
 
@@ -46,13 +46,24 @@ apt update -y && apt upgrade -y && apt full-upgrade -y && apt dist-upgrade -y &&
 apt install -y rsync openssh-client proftpd proftpd-basic apache2 squid putty dsniff openssl squidguard install proftpd-mod-crypto
 apt install -y open-vm-tools-desktop open-vm-tools
 
-cat > /etc/systemd/network/lan.network <<EOF
+rm /etc/systemd/network/admin.network
+cat > /etc/systemd/network/admin.network <<EOF
 [Match]
-Name=ens36
+Name=eth1
 
 [Network]
-Address=172.16.155.252/22
-Gateway=172.16.155.254
+Address=172.16.147.252/22
+Gateway=172.16.147.254
+DNS=8.8.8.8 1.1.1.1
+EOF
+
+cat > /etc/systemd/network/user.network <<EOF
+[Match]
+Name=eth0
+
+[Network]
+Address=172.16.151.252/22
+Gateway=172.16.151.254
 DNS=8.8.8.8 1.1.1.1
 EOF
 systemctl restart systemd-networkd
@@ -339,7 +350,7 @@ EOF
 
 rm /etc/apache2-test/sites-enabled/000-default.conf
 cat > /etc/apache2-test/sites-enabled/000-default.conf <<EOF
-<VirtualHost *:8080>
+<VirtualHost 172.16.147.252:8080>
         # The ServerName directive sets the request scheme, hostname and port that
         # the server uses to identify itself. This is used when creating
         # redirection URLs. In the context of virtual hosts, the ServerName
